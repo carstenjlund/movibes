@@ -1,42 +1,53 @@
-/** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
-
-import { useTheme } from "@emotion/react";
-import {  NavLink } from "react-router-dom";
+import { FaFilm } from "react-icons/fa";
+import { FaTv } from "react-icons/fa";
+import { FaHome } from "react-icons/fa";
+import { FaCalendarAlt } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
 
 const Navigation = () => {
-    const theme = useTheme()
-
-    const styleNav = css`
-        display: flex;
-        flex-direction: column;
-    `;
-
-    const style = css`
-        padding: 2rem;
-        border-right: 4px solid #212121;
-        color: ${theme.colors.something};
-        font-weight: bold;
-        text-decoration: none;
-    `
-
-    let activeStyle = {
-        color: theme.colors.primary,
-        backgroundColor: "#3dd2cd48",
-        borderRight: `4px solid ${theme.colors.primary}`,
-      };
-    return ( 
-        <nav css={styleNav}>
-        <NavLink css={style} to="/" style={({ isActive }) =>
-              isActive ? activeStyle : undefined}>Home</NavLink>
-        <NavLink css={style} to="/movies" style={({ isActive }) =>
-              isActive ? activeStyle : undefined}>Movies</NavLink>
-        <NavLink css={style} to="/tv-series" style={({ isActive }) =>
-              isActive ? activeStyle : undefined}>Tv-series</NavLink>
-        <NavLink css={style} to="/upcoming" style={({ isActive }) =>
-              isActive ? activeStyle : undefined}>Upcoming</NavLink>
+  const activeLink =
+    "border-r-4  no-underline border-teal-400 text-teal-400 p8 bg-teal-400 bg-opacity-20";
+  const normalLink = "text-gray-400 no-underline";
+  return (
+    <nav className="flex flex-col mt-12">
+      <NavLink
+        to="/"
+        className={({ isActive }) => (isActive ? activeLink : normalLink)}
+      >
+        <span className="p-8 inline-block flex gap-3">
+          <FaHome size="1.25rem" />
+          Home
+        </span>
+      </NavLink>
+      <NavLink
+        to="/movies"
+        className={({ isActive }) => (isActive ? activeLink : normalLink)}
+      >
+        <span className="p-8 inline-block flex gap-3">
+          <FaFilm size="1.25rem" />
+          Movies
+        </span>
+      </NavLink>
+      <NavLink
+        to="/tv-series"
+        className={({ isActive }) => (isActive ? activeLink : normalLink)}
+      >
+        <span className="p-8 inline-block flex gap-3">
+          <FaTv size="1.25rem" />
+          TV-Series
+        </span>
+      </NavLink>
+      <NavLink
+        to="/upcoming"
+        className={({ isActive }) => (isActive ? activeLink : normalLink)}
+      >
+        <span className="p-8 inline-block flex gap-3">
+          <FaCalendarAlt size="1.25rem" />
+          Upcoming
+        </span>
+      </NavLink>
     </nav>
-     );
-}
- 
+  );
+};
+
 export default Navigation;
