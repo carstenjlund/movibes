@@ -1,3 +1,6 @@
+/** @jsxImportSource @emotion/react */
+import { css } from "@emotion/react";
+
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -9,21 +12,55 @@ const FeaturedMovie = () => {
       "https://api.themoviedb.org/3/trending/movie/day?language=en&api_key=c28b09251184479f999a2baafd615444"
     ).then((response) => setFeatured(response.data.results[1]));
   }, []);
+
+  const style = css`
+    position: relative;
+    width: 56rem;
+    aspect-ratio: 2.2;
+    border-radius: 1.5rem;
+    overflow: hidden;
+  `;
+  const styleOverlay = css`
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 50%;
+    z-index: 10;
+    background: linear-gradient(
+      0deg,
+      rgba(30, 41, 59, 1) 0%,
+      rgba(0, 0, 0, 0) 100%
+    );
+    mix-blend-mode: multiply;
+  `;
+  const styleTextBox = css`
+    position: absolute;
+    left: 2rem;
+    bottom: 2rem;
+    z-index: 20;
+    width: 32rem;
+  `;
+  const styleParagraph = css`
+    margin: 0;
+    font-weight: bold;
+    color: white;
+  `;
+  const styleImage = css`
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  `;
+
   return (
     featured && (
-      <section
-        className="relative"
-        style={{ width: "56rem", aspectRatio: 2.2 }}
-      >
-        <div className="absolute left-0 bottom-0 w-full h-1/2 bg-gradient-to-t from-gray-600 to-transparent z-10 rounded-b-3xl"></div>
-        <div className="absolute bottom-8 left-8 w-[32rem] z-20">
-
-          <p className="m-0 text-white font-bold">
-            {featured.overview}
-          </p>
+      <section css={style}>
+        <div css={styleOverlay}></div>
+        <div css={styleTextBox}>
+          <p css={styleParagraph}>{featured.overview}</p>
         </div>
         <img
-          className="h-full w-full object-cover rounded-3xl"
+          css={styleImage}
           src={`https://image.tmdb.org/t/p/original${featured.backdrop_path}`}
           alt=""
         />

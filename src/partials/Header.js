@@ -4,8 +4,8 @@ import { MdLogout } from "react-icons/md";
 import Brand from "../components/Brand";
 const Header = () => {
   return (
-    <header className="h-screen flex flex-col rounded-r-3xl bg-neutral-800 pt-10">
-      <Brand />
+    <header className="flex h-screen flex-col rounded-r-3xl bg-neutral-800 pt-10">
+      <Brand className="brand-shadow">Movibes</Brand>
       <Navigation />
       <button className="btn btn-transparent mt-auto">
         <MdLogout />

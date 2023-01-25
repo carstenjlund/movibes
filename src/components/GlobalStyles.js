@@ -9,7 +9,7 @@ const GlobalStyles = () => {
   return (
     <Global
       styles={css`
-        @import url("https://fonts.googleapis.com/css2?family=Oswald&family=Poppins:ital,wght@0,700;1,400&display=swap");
+        @import url("https://fonts.googleapis.com/css2?family=Oswald&family=Poppins:wght@400;500;600;700&display=swap");
         body {
           background-color: ${theme.colors.body};
           color: ${theme.colors.text};
