@@ -4,17 +4,18 @@ import { FaHome } from "react-icons/fa";
 import { FaCalendarAlt } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 
+import NavigationLink from "../components/NavigationLink";
 const Navigation = () => {
   const activeLink =
-    "border-r-4  no-underline border-teal-400 text-teal-400 p8 bg-teal-400 bg-opacity-20";
+    "text-teal-400 p8 bg-teal-400 border-r-4 border-teal-400 bg-opacity-20 no-underline font-bold";
   const normalLink = "text-gray-400 no-underline";
   return (
-    <nav className="flex flex-col mt-12">
+    <nav className="mt-12 flex flex-col">
       <NavLink
         to="/"
         className={({ isActive }) => (isActive ? activeLink : normalLink)}
       >
-        <span className="p-8 inline-block flex gap-3">
+        <span className="inline-block flex gap-3 p-8 font-bold">
           <FaHome size="1.25rem" />
           Home
         </span>
@@ -23,7 +24,7 @@ const Navigation = () => {
         to="/movies"
         className={({ isActive }) => (isActive ? activeLink : normalLink)}
       >
-        <span className="p-8 inline-block flex gap-3">
+        <span className="inline-block flex gap-3 p-8 font-bold">
           <FaFilm size="1.25rem" />
           Movies
         </span>
@@ -32,7 +33,7 @@ const Navigation = () => {
         to="/tv-series"
         className={({ isActive }) => (isActive ? activeLink : normalLink)}
       >
-        <span className="p-8 inline-block flex gap-3">
+        <span className="inline-block flex gap-3 p-8 font-bold">
           <FaTv size="1.25rem" />
           TV-Series
         </span>
@@ -41,7 +42,7 @@ const Navigation = () => {
         to="/upcoming"
         className={({ isActive }) => (isActive ? activeLink : normalLink)}
       >
-        <span className="p-8 inline-block flex gap-3">
+        <span className="inline-block flex gap-3 p-8 font-bold">
           <FaCalendarAlt size="1.25rem" />
           Upcoming
         </span>

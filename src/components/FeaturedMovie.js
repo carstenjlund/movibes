@@ -15,15 +15,12 @@ const FeaturedMovie = () => {
         className="relative"
         style={{ width: "56rem", aspectRatio: 2.2 }}
       >
-        <div className="absolute left-0 bottom-0 w-full h-1/2 bg-gradient-to-t from-gray-600 to-transparent z-10 rounded-b-3xl"></div>
-        <div className="absolute bottom-8 left-8 w-[32rem] z-20">
-
-          <p className="m-0 text-white font-bold">
-            {featured.overview}
-          </p>
+        <div className="absolute left-0 bottom-0 z-10 h-1/2 w-full rounded-b-3xl bg-gradient-to-t from-gray-600 to-transparent"></div>
+        <div className="absolute bottom-8 left-8 z-20 w-[32rem]">
+          <p className="m-0 font-bold text-white">{featured.overview}</p>
         </div>
         <img
-          className="h-full w-full object-cover rounded-3xl"
+          className="h-full w-full rounded-3xl object-cover"
           src={`https://image.tmdb.org/t/p/original${featured.backdrop_path}`}
           alt=""
         />

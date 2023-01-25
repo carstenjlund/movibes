@@ -22,6 +22,9 @@ const GlobalStyles = () => {
           display: grid;
           grid-template-columns: 14.25rem 1fr;
         }
+        .text-shadow {
+          text-shadow: #fc0 1px 0 10px;
+        }
         main {
           padding: 2.75rem 3rem 2.75rem 2rem;
         }
