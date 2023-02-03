@@ -1,23 +1,23 @@
 import FeaturedMovie from "../components/FeaturedMovie";
-import { FaSearch } from "react-icons/fa";
+import MoviesSection from "../components/MoviesSection";
+import SearchForm from "../components/SearfchForm";
 
 const Home = () => {
   return (
     <>
-      <form className="flex mb-8">
-        <button className="bg-neutral-800 pr-4 pl-8 rounded-l-full">
-          <FaSearch color="gray" />
-        </button>
-
-        <input
-          className="bg-neutral-800 p-4 rounded-r-full color-neutral-200 basis-full focus:outline-none"
-          type="text"
-          placeholder="Search for movies, TV shows..."
-        />
-      </form>
-
+      <SearchForm />
       <FeaturedMovie />
 
+      <MoviesSection
+        headline="Movies"
+        url="https://api.themoviedb.org/3/movie/top_rated?language=en&api_key=c28b09251184479f999a2baafd615444"
+        type="movie"
+      />
+      <MoviesSection
+        headline="TV-Series"
+        url="https://api.themoviedb.org/3/tv/popular?language=en&api_key=c28b09251184479f999a2baafd615444"
+        type="tv"
+      />
     </>
   );
 };

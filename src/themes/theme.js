@@ -24,6 +24,7 @@ export const theme = {
   dark: {
     colors: {
       primary: "#3DD2CC",
+      primaryOpaque: "#3dd2cc66",
       secondary: "darkblue",
       standard: "darkorange",
       body: "#191919",

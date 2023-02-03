@@ -1,16 +1,30 @@
+/** @jsxImportSource @emotion/react */
+import { css } from "@emotion/react";
+
+import { MdLogout } from "react-icons/md";
+
 import Navigation from "./Navigation";
 import OnlyTextButton from "../components/OnlyTextButton";
-import { MdLogout } from "react-icons/md";
 import Brand from "../components/Brand";
+
 const Header = () => {
+  const style = css`
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #212121;
+    border-radius: 0 1.5rem 1.5rem 0;
+    position: sticky;
+    top: 0;
+  `;
   return (
-    <header className="flex h-screen flex-col rounded-r-3xl bg-neutral-800 pt-10">
+    <header css={style}>
       <Brand className="brand-shadow">Movibes</Brand>
       <Navigation />
-      <button className="btn btn-transparent mt-auto">
+      <OnlyTextButton style={{ marginTop: "auto" }}>
         <MdLogout />
         logout
-      </button>
+      </OnlyTextButton>
     </header>
   );
 };

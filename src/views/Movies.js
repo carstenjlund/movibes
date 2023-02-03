@@ -1,3 +1,5 @@
+import GenrePicker from "../components/GenrePicker";
+
 const Movies = () => {
   return (
     <article>
@@ -7,6 +9,8 @@ const Movies = () => {
         odio tempore totam, odit sed provident veniam modi rem temporibus ipsam
         debitis eaque eius! Pariatur ipsam laudantium eum impedit.
       </p>
+
+      <GenrePicker />
     </article>
   );
 };

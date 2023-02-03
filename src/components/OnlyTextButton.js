@@ -9,6 +9,8 @@ const OnlyTextButton = styled.button`
   text-align: left;
   font-weight: bold;
   font-family: "Poppins", sans-serif;
+  display: flex;
+  padding: 2rem;
 
   & svg {
     margin-right: 0.75rem;
