@@ -12,7 +12,7 @@ const MoviesSection = ({ url, headline, type }) => {
   const { data: movies, loading } = useAxios(url);
 
   const style = css`
-    width: 56rem;
+    width: 100%;
   `;
   const styleHeadline = css`
     color: white;

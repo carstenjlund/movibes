@@ -1,19 +1,27 @@
+import { useState, useEffect } from "react";
+import axios from "axios";
 import { useForm } from "react-hook-form";
 import _ from "lodash";
 
 const GenrePicker = () => {
+  const [genres, setGenres] = useState();
+  const [loading, setLoading] = useState(true);
+  const [showItems, setShowItems] = useState(6);
+
+  useEffect(() => {
+    axios(
+      "https://api.themoviedb.org/3/genre/movie/list?language=en&api_key=c28b09251184479f999a2baafd615444"
+    )
+      .then((response) => setGenres(response.data.genres))
+      .finally(() => setLoading(false));
+  }, []);
+
   const {
     register,
     getValues,
     setValue,
     formState: { errors },
-  } = useForm({
-    defaultValues: {
-      action: true,
-      adventure: true,
-      animated: true,
-    },
-  });
+  } = useForm();
 
   const handleChange = () => {
     console.log("something changed");
@@ -22,55 +30,45 @@ const GenrePicker = () => {
   };
   const handleClick = (e) => {
     e.preventDefault();
-    //console.log("unchecking");
     let values = getValues();
-    //console.log(values);
 
     _.map(values, (__, key) => {
       setValue(key, false);
     });
 
-    // for (const key in values) {
-    //   if (values.hasOwnProperty(key)) {
-    //     //console.log(`${key}: ${values[key]}`);
-    //     setValue(key, false);
-    //   }
-    //   console.log(getValues());
-    //filter movies to only show chosen caterories
+    console.log(getValues());
+  };
+  const handleShowAll = (e) => {
+    e.preventDefault();
+    showItems === genres.length ? setShowItems(6) : setShowItems(genres.length);
   };
 
-  return (
-    <form onChange={handleChange}>
-      <h2>Categories</h2>
-      <button onClick={handleClick}>uncheck all</button>
-      <div className="formGroup">
-        <input
-          type="checkbox"
-          id="action"
-          placeholder="action"
-          {...register("action", {})}
-        />
-        <label htmlFor="action">Action</label>
-      </div>
-      <div className="formGroup">
-        <input
-          id="adventure"
-          type="checkbox"
-          placeholder="adventure"
-          {...register("adventure", {})}
-        />
-        <label htmlFor="adventure">Adventure</label>
-      </div>
-      <div className="formGroup">
-        <input
-          id="animated"
-          type="checkbox"
-          placeholder="animated"
-          {...register("animated", {})}
-        />
-        <label htmlFor="animated">Animated</label>
-      </div>
-    </form>
+  return loading ? null : (
+    <>
+      <form onChange={handleChange}>
+        <h2>Categories</h2>
+        <button onClick={handleClick}>uncheck all</button>
+
+        {_.map(genres, (genre, index) => {
+          if (index < showItems)
+            return (
+              <div className="formGroup">
+                <input
+                  id={genre.name}
+                  type="checkbox"
+                  data-id={genre.id}
+                  {...register(genre.name, { value: true })}
+                />
+                <label htmlFor={genre.name}>{genre.name}</label>
+              </div>
+            );
+        })}
+
+        <button onClick={handleShowAll}>
+          {showItems === genres.length ? "show less" : "Show more..."}
+        </button>
+      </form>
+    </>
   );
 };
 
