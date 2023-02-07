@@ -1,3 +1,6 @@
+/** @jsxImportSource @emotion/react */
+import { css } from "@emotion/react";
+
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
@@ -43,29 +46,44 @@ const GenrePicker = () => {
     showItems === genres.length ? setShowItems(6) : setShowItems(genres.length);
   };
 
+  const style = css`
+    background-color: #212121;
+    color: white;
+    padding: 1rem;
+    border-radius: 2rem;
+    & h2 {
+      margin-top: 0;
+    }
+    & .formGroup,
+    & h2 {
+      display: flex;
+      justify-content: space-between;
+    }
+  `;
+
   return loading ? null : (
     <>
-      <form onChange={handleChange}>
-        <h2>Categories</h2>
-        <button onClick={handleClick}>uncheck all</button>
+      <form css={style} onChange={handleChange}>
+        <h2>
+          Categories<button onClick={handleClick}>uncheck all</button>
+        </h2>
 
         {_.map(genres, (genre, index) => {
           if (index < showItems)
             return (
               <div className="formGroup">
+                <label htmlFor={genre.name}>{genre.name}</label>
                 <input
                   id={genre.name}
                   type="checkbox"
-                  data-id={genre.id}
                   {...register(genre.name, { value: true })}
                 />
-                <label htmlFor={genre.name}>{genre.name}</label>
               </div>
             );
         })}
 
         <button onClick={handleShowAll}>
-          {showItems === genres.length ? "show less" : "Show more..."}
+          {showItems === genres.length ? "Show less..." : "Show more..."}
         </button>
       </form>
     </>

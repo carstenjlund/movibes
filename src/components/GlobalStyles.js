@@ -27,6 +27,7 @@ const GlobalStyles = () => {
           padding: 2.75rem 3rem 2.75rem 2rem;
         }
         footer {
+          background-color: orange;
         }
       `}
     />

@@ -9,6 +9,7 @@ import Movies from "./views/Movies";
 import TvSeries from "./views/TvSeries";
 import Upcoming from "./views/Upcoming";
 import Details from "./views/Details";
+import Search from "./views/Search";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -19,7 +20,7 @@ export const router = createBrowserRouter(
       <Route path="/upcoming" element={<Upcoming />} />
       <Route path="/details/:type/:id" element={<Details />} />
       <Route path="/results" element={<Details />} />
-
+      <Route path="/search" element={<Search />} />
     </Route>
   )
 );

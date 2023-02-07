@@ -89,7 +89,7 @@ const Details = () => {
           {" "}
           Writer{writers.length > 1 && "s"}:{" "}
           {writers.map((writer, index) => (
-            <span style={{ color: "#3DD2CC" }}>
+            <span key={writer.id} style={{ color: "#3DD2CC" }}>
               {index === 0 ? null : ", "} {writer.name}
             </span>
           ))}
