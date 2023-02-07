@@ -11,44 +11,37 @@ const Details = () => {
   const [director, setDirector] = useState();
   const [writers, setWriters] = useState();
 
-  const url = `https://api.themoviedb.org/3/${type}/${id}?language=en&api_key=c28b09251184479f999a2baafd615444`;
-
-  const videoUrl = `https://api.themoviedb.org/3/movie/${id}/videos?language=en&api_key=c28b09251184479f999a2baafd615444`;
-  const creditsUrl = `https://api.themoviedb.org/3/movie/${id}/credits?language=en&api_key=c28b09251184479f999a2baafd615444`;
+  const url = `https://api.themoviedb.org/3/${type}/${id}?language=en&api_key=c28b09251184479f999a2baafd615444&append_to_response=videos,credits`;
 
   const { data: movie, loading: movieLoading } = useAxios(url);
-  const { data: videos, loading: videoLoading } = useAxios(videoUrl);
-  const { data: credits, loading: creditsLoading } = useAxios(creditsUrl);
 
-  credits && console.log(credits);
+  movie && console.log(movie);
 
   useEffect(() => {
-    if (videos) {
+    if (movie) {
       setYoutubeId(
-        videos.results.find((video) =>
+        movie.videos.results.find((video) =>
           video.type.toLowerCase().includes("trailer")
         )
       );
-    }
-  }, [videos]);
 
-  useEffect(() => {
-    if (credits) {
       setDirector(
-        credits.crew.find((member) => member.job.toLowerCase() === "director")
+        movie.credits.crew.find(
+          (member) => member.job.toLowerCase() === "director"
+        )
       );
       setWriters(
-        credits.crew.filter((member) =>
+        movie.credits.crew.filter((member) =>
           member.job.toLowerCase().includes("writer")
         )
       );
     }
-  }, [credits]);
+  }, [movie]);
 
   const openModal = () => setModalOpen(true);
   const closeModal = () => setModalOpen(false);
 
-  return movieLoading && videoLoading && creditsLoading ? (
+  return movieLoading ? (
     <p>loading</p>
   ) : (
     <article>
@@ -80,7 +73,7 @@ const Details = () => {
 
       <h2 style={{ fontWeight: "500", color: "white" }}>
         {type === "movie"
-          ? `${movie.title}  ${movie.release_date.slice(0, 4)}  ${Math.floor(
+          ? `${movie?.title}  ${movie.release_date.slice(0, 4)}  ${Math.floor(
               movie.runtime / 60
             )}h ${movie.runtime % 60}m`
           : `${movie.name}  ${movie.first_air_date.slice(0, 4)}   ${
@@ -94,18 +87,18 @@ const Details = () => {
       </p>
       {writers?.length ? (
         <p style={{ color: "white" }}>
-          {" "}
           Writer{writers.length > 1 && "s"}:{" "}
           {writers.map((writer, index) => (
             <span style={{ color: "#3DD2CC" }}>
-              {index === 0 ? null : ", "} {writer.name}
+              {index === 0 ? null : ", "}
+              {writer.name}
             </span>
           ))}
         </p>
       ) : null}
       <p style={{ color: "white" }}>
         Stars:{" "}
-        {credits?.cast.map((member, index) => {
+        {movie.credits.cast.map((member, index) => {
           if (index < 4)
             return (
               <span style={{ color: "#3DD2CC" }}>

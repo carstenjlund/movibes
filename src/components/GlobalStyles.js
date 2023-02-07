@@ -20,10 +20,23 @@ const GlobalStyles = () => {
         }
         #root {
           display: grid;
-          grid-template-columns: 14.25rem 1fr;
+          grid-template-columns: 14.25rem 1fr 18rem;
         }
         main {
           padding: 2.75rem 3rem 2.75rem 2rem;
+        }
+        footer {
+          background-color: orange;
+        }
+
+        @media (max-width: 1000px) {
+          #root {
+            display: block;
+          }
+
+          footer {
+            background-color: green;
+          }
         }
       `}
     />

@@ -10,10 +10,8 @@ import { Link } from "react-router-dom";
 
 const MoviesSection = ({ url, headline, type }) => {
   const { data: movies, loading } = useAxios(url);
+  movies && console.log(movies);
 
-  const style = css`
-    width: 56rem;
-  `;
   const styleHeadline = css`
     color: white;
     margin-bottom: 0.75rem;
@@ -21,7 +19,7 @@ const MoviesSection = ({ url, headline, type }) => {
   return loading ? (
     <PulseLoader />
   ) : (
-    <section css={style}>
+    <section>
       <h2 css={styleHeadline}>{headline}</h2>
       <Flickity
         options={{

@@ -15,7 +15,7 @@ function App() {
     <ThemeProvider theme={darkmode ? theme.dark : theme.light}>
       <GlobalStyles />
       <Header />
-      <main className="py-11 pr-12 pl-8">
+      <main>
         <Outlet />
       </main>
       <footer></footer>
