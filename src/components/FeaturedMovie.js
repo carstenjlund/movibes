@@ -40,6 +40,7 @@ const FeaturedMovie = () => {
 
   const style = css`
     position: relative;
+    width: 100%;
     aspect-ratio: 16/9;
     border-radius: 1.5rem;
     overflow: hidden;

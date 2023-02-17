@@ -14,7 +14,7 @@ const VideoModal = ({ modalOpen, closeModal, youtubeId }) => {
     },
     overlay: {
       backdropFilter: "blur(2px)",
-      backgroundColor: "rgba(10,10,10,0.9)",
+      backgroundColor: "rgba(10,10,10,0.3)",
     },
   };
 
@@ -33,7 +33,7 @@ const VideoModal = ({ modalOpen, closeModal, youtubeId }) => {
         src={`https://www.youtube.com/embed/${youtubeId?.key}?autoplay=1`}
         title="YouTube video player"
         frameborder="0"
-        allow="autoplay; fullscreen; accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allow="autoplay; fullscreen; accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;"
         allowfullscreen
       ></iframe>
     </Modal>

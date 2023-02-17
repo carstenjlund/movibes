@@ -3,6 +3,7 @@ import { ThemeProvider } from "@emotion/react";
 import useDarkMode from "./customHooks/useDarkMode";
 import { theme } from "./themes/theme";
 import Header from "./partials/Header";
+import Footer from "./components/Footer";
 import GlobalStyles from "./components/GlobalStyles";
 
 console.log("lighttheme: ", theme.light);
@@ -18,7 +19,7 @@ function App() {
       <main>
         <Outlet />
       </main>
-      <footer></footer>
+      <Footer />
     </ThemeProvider>
   );
 }
