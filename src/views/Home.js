@@ -13,7 +13,6 @@ const Home = () => {
         url="https://api.themoviedb.org/3/movie/now_playing?language=en&api_key=c28b09251184479f999a2baafd615444"
         type="movie"
       />
-
       <MoviesSection
         headline="TV-Series"
         url="https://api.themoviedb.org/3/tv/popular?language=da&api_key=c28b09251184479f999a2baafd615444"

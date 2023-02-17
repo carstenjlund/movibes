@@ -2,12 +2,15 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import useAxios from "../customHooks/useAxios";
 import VideoModal from "../components/VideoModal";
+import ActorModal from "../components/ActorModal";
 import { FaPlay } from "react-icons/fa";
 
 const Details = () => {
   const { type, id } = useParams();
   const [youtubeId, setYoutubeId] = useState();
+  const [actorId, setActorId] = useState();
   const [modalOpen, setModalOpen] = useState(false);
+  const [isActorModalOpen, setIsActorModalOpen] = useState(false);
   const [director, setDirector] = useState();
   const [writers, setWriters] = useState();
 
@@ -39,6 +42,13 @@ const Details = () => {
 
   const openModal = () => setModalOpen(true);
   const closeModal = () => setModalOpen(false);
+  //const openActorModal = () => setActorModalOpen(true);
+  const closeActorModal = () => setIsActorModalOpen(false);
+
+  const handleShowMember = (id) => {
+    setActorId(id);
+    setIsActorModalOpen(true);
+  };
 
   return movieLoading ? (
     <p>loading</p>
@@ -107,11 +117,50 @@ const Details = () => {
             );
         })}
       </p>
+      <h2 style={{ color: "white" }}>Top Cast</h2>
+      <section style={{ display: "flex" }}>
+        {movie?.credits.cast.map((person, index) => {
+          if (index < 4)
+            return (
+              <section
+                onClick={() => {
+                  handleShowMember(person.id);
+                }}
+              >
+                <div
+                  style={{
+                    width: "10rem",
+                    height: "10rem",
+                    marginRight: "1.5rem",
+                    borderRadius: "50%",
+                    overflow: "hidden",
+                  }}
+                >
+                  <img
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                    src={`https://image.tmdb.org/t/p/w185/${person.profile_path}`}
+                    alt=""
+                  />
+                </div>
+                <p style={{ color: "white" }}>{person.name}</p>
+              </section>
+            );
+        })}
+      </section>
 
       <VideoModal
         modalOpen={modalOpen}
         closeModal={closeModal}
         youtubeId={youtubeId}
+      />
+      <ActorModal
+        isActorModalOpen={isActorModalOpen}
+        closeActorModal={closeActorModal}
+        actorId={actorId}
       />
     </article>
   );

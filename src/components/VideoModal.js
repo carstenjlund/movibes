@@ -14,7 +14,7 @@ const VideoModal = ({ modalOpen, closeModal, youtubeId }) => {
     },
     overlay: {
       backdropFilter: "blur(2px)",
-      backgroundColor: "rgba(10,10,10,0.9)",
+      backgroundColor: "rgba(10,10,10,0.3)",
     },
   };
 

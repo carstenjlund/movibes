@@ -10,6 +10,7 @@ import TvSeries from "./views/TvSeries";
 import Upcoming from "./views/Upcoming";
 import Details from "./views/Details";
 import Search from "./views/Search";
+import Login from "./views/Login";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -21,6 +22,7 @@ export const router = createBrowserRouter(
       <Route path="/details/:type/:id" element={<Details />} />
       <Route path="/results" element={<Details />} />
       <Route path="/search" element={<Search />} />
+      <Route path="/login" element={<Login />} />
     </Route>
   )
 );

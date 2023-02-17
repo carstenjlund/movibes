@@ -35,7 +35,6 @@ const SearchForm = () => {
       </button>
 
       <input
-        className="color-neutral-200 basis-full rounded-r-full bg-neutral-800 p-4 focus:outline-none"
         type="search"
         name="query"
         placeholder="Search for movies, TV shows..."
