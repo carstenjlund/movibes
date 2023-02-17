@@ -21,6 +21,7 @@ const GlobalStyles = () => {
         #root {
           display: grid;
           grid-template-columns: 14.25rem 1fr 16rem;
+
         }
         main,
         footer {
@@ -28,6 +29,17 @@ const GlobalStyles = () => {
         }
         footer {
           background-color: orange;
+        }
+
+
+        @media (max-width: 1000px) {
+          #root {
+            display: block;
+          }
+
+          footer {
+            background-color: green;
+          }
         }
       `}
     />

@@ -15,7 +15,6 @@ const Details = () => {
   const [writers, setWriters] = useState();
 
   const url = `https://api.themoviedb.org/3/${type}/${id}?language=en&api_key=c28b09251184479f999a2baafd615444&append_to_response=videos,images,credits`;
-
   const { data: movie, loading: movieLoading } = useAxios(url);
 
   movie && console.log(movie);
@@ -27,6 +26,7 @@ const Details = () => {
           video.type.toLowerCase().includes("trailer")
         )
       );
+
       setDirector(
         movie.credits.crew.find(
           (member) => member.job.toLowerCase() === "director"
@@ -96,11 +96,12 @@ const Details = () => {
       </p>
       {writers?.length ? (
         <p style={{ color: "white" }}>
-          {" "}
           Writer{writers.length > 1 && "s"}:{" "}
           {writers.map((writer, index) => (
+
             <span key={writer.id} style={{ color: "#3DD2CC" }}>
               {index === 0 ? null : ", "} {writer.name}
+
             </span>
           ))}
         </p>
