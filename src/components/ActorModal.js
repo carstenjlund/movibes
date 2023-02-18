@@ -6,12 +6,14 @@ const ActorModal = ({ isActorModalOpen, closeActorModal, actorId }) => {
   const [actor, setActor] = useState();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState();
+  Modal.setAppElement("#root");
   useEffect(() => {
-    axios(
-      `https://api.themoviedb.org/3/person/${actorId}?language=en&api_key=c28b09251184479f999a2baafd615444`
-    )
-      .then((response) => setActor(response.data))
-      .finally(() => setLoading(false));
+    actorId &&
+      axios(
+        `https://api.themoviedb.org/3/person/${actorId}?language=en&api_key=c28b09251184479f999a2baafd615444`
+      )
+        .then((response) => setActor(response.data))
+        .finally(() => setLoading(false));
   }, [actorId]);
 
   const handleCloseRequest = () => {

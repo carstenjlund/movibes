@@ -17,8 +17,6 @@ const Details = () => {
   const url = `https://api.themoviedb.org/3/${type}/${id}?language=en&api_key=c28b09251184479f999a2baafd615444&append_to_response=videos,images,credits`;
   const { data: movie, loading: movieLoading } = useAxios(url);
 
-  movie && console.log(movie);
-
   useEffect(() => {
     if (movie) {
       setYoutubeId(
@@ -87,7 +85,7 @@ const Details = () => {
             )}h ${movie.runtime % 60}m`
           : `${movie.name}  ${movie.first_air_date.slice(0, 4)}   ${
               movie.number_of_seasons
-            } season${movie.number_of_seasons === 1 ? "" : "s"}`}
+            } ${movie.number_of_seasons === 1 ? "season" : "seasons"}`}
       </h2>
       <p style={{ color: "white", width: "56rem" }}>{movie.overview}</p>
       <p style={{ color: "white" }}>
@@ -98,10 +96,8 @@ const Details = () => {
         <p style={{ color: "white" }}>
           Writer{writers.length > 1 && "s"}:{" "}
           {writers.map((writer, index) => (
-
             <span key={writer.id} style={{ color: "#3DD2CC" }}>
               {index === 0 ? null : ", "} {writer.name}
-
             </span>
           ))}
         </p>
@@ -111,7 +107,7 @@ const Details = () => {
         {movie.credits.cast.map((member, index) => {
           if (index < 4)
             return (
-              <span style={{ color: "#3DD2CC" }}>
+              <span key={member.id} style={{ color: "#3DD2CC" }}>
                 {member.name}
                 {index < 3 ? ", " : null}
               </span>
@@ -124,6 +120,7 @@ const Details = () => {
           if (index < 4)
             return (
               <section
+                key={person.id}
                 onClick={() => {
                   handleShowMember(person.id);
                 }}

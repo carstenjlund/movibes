@@ -1,10 +1,6 @@
 import App from "./App";
-import {
-  createBrowserRouter,
-  createRoutesFromElements,
-  Route,
-} from "react-router-dom";
-import Home from "./views/Home";
+import { createBrowserRouter } from "react-router-dom";
+import Home, { homeLoader } from "./views/Home";
 import Movies from "./views/Movies";
 import TvSeries from "./views/TvSeries";
 import Upcoming from "./views/Upcoming";
@@ -12,17 +8,44 @@ import Details from "./views/Details";
 import Search from "./views/Search";
 import Login from "./views/Login";
 
-export const router = createBrowserRouter(
-  createRoutesFromElements(
-    <Route path="/" element={<App />}>
-      <Route index element={<Home />} />
-      <Route path="/movies" element={<Movies />} />
-      <Route path="/tv-series" element={<TvSeries />} />
-      <Route path="/upcoming" element={<Upcoming />} />
-      <Route path="/details/:type/:id" element={<Details />} />
-      <Route path="/results" element={<Details />} />
-      <Route path="/search" element={<Search />} />
-      <Route path="/login" element={<Login />} />
-    </Route>
-  )
-);
+export const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    children: [
+      {
+        index: true,
+        element: <Home />,
+        loader: homeLoader,
+      },
+      {
+        path: "movies",
+        element: <Movies />,
+      },
+      {
+        path: "tv-series",
+        element: <TvSeries />,
+      },
+      {
+        path: "upcoming",
+        element: <Upcoming />,
+      },
+      {
+        path: "/details/:type/:id",
+        element: <Details />,
+      },
+      {
+        path: "/results",
+        element: <Details />,
+      },
+      {
+        path: "/search",
+        element: <Search />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+    ],
+  },
+]);

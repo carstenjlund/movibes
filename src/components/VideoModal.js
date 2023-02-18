@@ -1,6 +1,7 @@
 import Modal from "react-modal";
 
 const VideoModal = ({ modalOpen, closeModal, youtubeId }) => {
+  Modal.setAppElement("#root");
   const customStyles = {
     content: {
       top: "50%",
@@ -26,15 +27,15 @@ const VideoModal = ({ modalOpen, closeModal, youtubeId }) => {
       contentLabel="Example Modal"
     >
       <iframe
-        autoplay="1"
+        autoPlay="1"
         style={{ display: "block", border: "none" }}
         width="1120"
         height="630"
         src={`https://www.youtube.com/embed/${youtubeId?.key}?autoplay=1`}
         title="YouTube video player"
-        frameborder="0"
+        frameBorder="0"
         allow="autoplay; fullscreen; accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;"
-        allowfullscreen
+        allowFullScreen
       ></iframe>
     </Modal>
   );
